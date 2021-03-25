@@ -9,7 +9,7 @@ pipeline {
     stage("Upload to AWS") {
       steps {
         withAWS(region:'eu-west-1',credentials:'floreness_creds') {
-          s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'manu-floreness')
+          s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', acl:'PublicRead', bucket:'manu-floreness')
         }
       }
     }
