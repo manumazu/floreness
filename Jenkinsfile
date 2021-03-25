@@ -3,12 +3,14 @@ pipeline {
   stages {
     stage("Hello") {
       steps {
-        sh 'echo \'Hello Manu\''
+        sh 'echo 'Hello Green Team''
       }
     }
-    stage("Lint HTML") {
+    stage("Upload to AWS") {
       steps {
-        sh "tidy -q -e *.html"
+        withAWS(region:'eu-west-1',credentials:'floreness_creds') {
+          s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'manu-floreness')
+        }
       }
     }
   }
