@@ -1,11 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage("Hello") {
       steps {
-        echo 'Jenkins minute pipeline'
+        sh 'echo \'Hello Manu\''
       }
     }
-
+    stage("Lint HTML") {
+      steps {
+        sh "tidy -q -e *.html"
+      }
+    }
   }
 }
